@@ -1,0 +1,1374 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+  :root {
+    --brand: #0D6EF7;
+    --brand-light: #E8F1FF;
+    --brand-dark: #0348C4;
+    --accent: #00D4A0;
+    --accent-light: #E0FBF5;
+    --warm: #FF6B35;
+    --warm-light: #FFF0EB;
+    --gold: #F5A623;
+    --gold-light: #FFF8EC;
+    --surface: #FFFFFF;
+    --surface-2: #F7F8FA;
+    --surface-3: #F0F2F6;
+    --ink: #0C0F1A;
+    --ink-2: #3D4354;
+    --ink-3: #7A8099;
+    --ink-4: #B4BAC9;
+    --line: rgba(0,0,0,0.07);
+    --line-med: rgba(0,0,0,0.12);
+    --syne: 'Syne', sans-serif;
+    --dm: 'DM Sans', sans-serif;
+    --r4: 4px; --r8: 8px; --r12: 12px; --r16: 16px; --r24: 24px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #141820;
+      --surface-2: #1C2130;
+      --surface-3: #242A3A;
+      --ink: #F0F2FA;
+      --ink-2: #C8CCE0;
+      --ink-3: #7A8099;
+      --ink-4: #454C64;
+      --line: rgba(255,255,255,0.07);
+      --line-med: rgba(255,255,255,0.13);
+      --brand-light: #0D2550;
+      --accent-light: #003D30;
+      --warm-light: #3A1A08;
+      --gold-light: #3A2800;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .cp-root {
+    font-family: var(--dm);
+    background: var(--surface);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  .cp-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px; height: 56px;
+    border-bottom: 0.5px solid var(--line-med);
+    background: var(--surface);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .cp-logo {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--syne); font-weight: 800; font-size: 18px; letter-spacing: -0.5px;
+    color: var(--ink);
+  }
+  .cp-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); }
+  .cp-logo span { color: var(--brand); }
+  .cp-nav-links {
+    display: flex; align-items: center; gap: 4px;
+  }
+  .cp-nav-link {
+    padding: 6px 14px; border-radius: var(--r8); font-size: 13px; font-weight: 500;
+    color: var(--ink-3); cursor: pointer; transition: all 0.15s;
+    border: none; background: none;
+  }
+  .cp-nav-link:hover, .cp-nav-link.active {
+    color: var(--ink); background: var(--surface-2);
+  }
+  .cp-nav-actions { display: flex; align-items: center; gap: 8px; }
+  .cp-btn-ghost {
+    padding: 7px 16px; border-radius: var(--r8); font-size: 13px; font-weight: 500;
+    color: var(--ink-2); cursor: pointer; transition: all 0.15s;
+    border: 0.5px solid var(--line-med); background: none;
+  }
+  .cp-btn-ghost:hover { background: var(--surface-2); }
+  .cp-btn-primary {
+    padding: 7px 16px; border-radius: var(--r8); font-size: 13px; font-weight: 600;
+    color: white; cursor: pointer; transition: all 0.15s;
+    border: none; background: var(--brand);
+  }
+  .cp-btn-primary:hover { background: var(--brand-dark); transform: translateY(-1px); }
+
+  /* SCREEN SYSTEM */
+  .cp-screen { display: none; animation: fadeUp 0.3s ease; }
+  .cp-screen.active { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SCREEN 1: HOMEPAGE ===== */
+  .cp-hero {
+    padding: 60px 28px 40px;
+    text-align: center;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(13,110,247,0.06) 0%, transparent 70%);
+  }
+  .cp-hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 99px; font-size: 12px; font-weight: 500;
+    background: var(--brand-light); color: var(--brand);
+    border: 0.5px solid rgba(13,110,247,0.2); margin-bottom: 20px;
+  }
+  .cp-hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+  .cp-hero-h1 {
+    font-family: var(--syne); font-weight: 800; font-size: 44px; line-height: 1.1;
+    letter-spacing: -1.5px; color: var(--ink); margin-bottom: 16px;
+  }
+  .cp-hero-h1 em { color: var(--brand); font-style: normal; }
+  .cp-hero-sub {
+    font-size: 16px; color: var(--ink-3); line-height: 1.6; max-width: 460px; margin: 0 auto 32px;
+  }
+  .cp-search-bar {
+    max-width: 560px; margin: 0 auto 48px;
+    background: var(--surface); border: 1px solid var(--line-med);
+    border-radius: var(--r16); padding: 6px 6px 6px 20px;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 24px rgba(13,110,247,0.08);
+  }
+  .cp-search-bar input {
+    flex: 1; border: none; background: none; outline: none;
+    font-family: var(--dm); font-size: 15px; color: var(--ink);
+  }
+  .cp-search-bar input::placeholder { color: var(--ink-4); }
+  .cp-search-btn {
+    padding: 10px 20px; border-radius: var(--r12); font-size: 14px; font-weight: 600;
+    color: white; background: var(--brand); border: none; cursor: pointer;
+    transition: all 0.15s; white-space: nowrap;
+  }
+  .cp-search-btn:hover { background: var(--brand-dark); }
+
+  .cp-stats-row {
+    display: flex; justify-content: center; gap: 36px; margin-bottom: 56px;
+    flex-wrap: wrap;
+  }
+  .cp-stat { text-align: center; }
+  .cp-stat-num {
+    font-family: var(--syne); font-weight: 700; font-size: 28px;
+    color: var(--ink); letter-spacing: -0.5px;
+  }
+  .cp-stat-label { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+
+  /* Market scanner cards */
+  .cp-section { padding: 0 28px 40px; }
+  .cp-section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .cp-section-title { font-family: var(--syne); font-weight: 700; font-size: 20px; letter-spacing: -0.3px; }
+  .cp-section-more { font-size: 13px; color: var(--brand); cursor: pointer; font-weight: 500; }
+
+  .cp-role-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;
+  }
+  .cp-role-card {
+    background: var(--surface-2); border: 0.5px solid var(--line);
+    border-radius: var(--r16); padding: 16px 18px; cursor: pointer;
+    transition: all 0.2s; position: relative; overflow: hidden;
+  }
+  .cp-role-card:hover {
+    border-color: var(--brand); transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(13,110,247,0.1);
+  }
+  .cp-role-card-icon {
+    width: 36px; height: 36px; border-radius: var(--r8); margin-bottom: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .cp-role-name { font-weight: 600; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
+  .cp-role-range { font-size: 13px; color: var(--ink-3); margin-bottom: 8px; }
+  .cp-role-trend {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; font-weight: 500; padding: 2px 7px;
+    border-radius: 99px; background: var(--accent-light); color: var(--accent);
+  }
+  .cp-role-trend.down { background: var(--warm-light); color: var(--warm); }
+
+  /* Trending companies */
+  .cp-company-row { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 4px; }
+  .cp-company-chip {
+    display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+    padding: 10px 14px; border-radius: var(--r12);
+    background: var(--surface-2); border: 0.5px solid var(--line);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .cp-company-chip:hover { border-color: var(--brand); background: var(--brand-light); }
+  .cp-company-logo {
+    width: 28px; height: 28px; border-radius: var(--r8);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: white;
+  }
+  .cp-company-chip-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .cp-company-chip-med { font-size: 11px; color: var(--ink-3); }
+
+  /* insight strip */
+  .cp-insight-strip {
+    margin: 0 28px 32px;
+    background: linear-gradient(135deg, var(--brand) 0%, #1A7FFF 100%);
+    border-radius: var(--r16); padding: 20px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    cursor: pointer;
+  }
+  .cp-insight-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); margin-bottom: 4px;
+  }
+  .cp-insight-text { font-family: var(--syne); font-weight: 700; font-size: 17px; color: white; line-height: 1.3; }
+  .cp-insight-cta {
+    padding: 8px 16px; border-radius: var(--r8); font-size: 13px; font-weight: 600;
+    background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);
+    cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* ===== SCREEN 2: SALARY DISCOVERY ===== */
+  .cp-discovery-layout {
+    display: grid; grid-template-columns: 300px 1fr; gap: 0;
+    min-height: calc(100vh - 56px);
+  }
+  .cp-filters-panel {
+    border-right: 0.5px solid var(--line-med); padding: 20px;
+    background: var(--surface-2);
+  }
+  .cp-filter-group { margin-bottom: 20px; }
+  .cp-filter-label { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  .cp-filter-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cp-chip {
+    padding: 5px 11px; border-radius: 99px; font-size: 12px; font-weight: 500;
+    border: 0.5px solid var(--line-med); background: var(--surface); color: var(--ink-2);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .cp-chip:hover, .cp-chip.active {
+    background: var(--brand); color: white; border-color: var(--brand);
+  }
+  .cp-filter-slider { width: 100%; margin: 8px 0 4px; accent-color: var(--brand); }
+  .cp-filter-range { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-3); }
+
+  .cp-results-panel { padding: 20px 24px; }
+  .cp-results-header {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;
+  }
+  .cp-results-count { font-weight: 600; font-size: 15px; color: var(--ink); }
+  .cp-sort-row { display: flex; gap: 6px; }
+  .cp-sort-btn {
+    padding: 5px 12px; border-radius: var(--r8); font-size: 12px; font-weight: 500;
+    border: 0.5px solid var(--line-med); background: none; color: var(--ink-3); cursor: pointer;
+  }
+  .cp-sort-btn.active { background: var(--ink); color: white; border-color: var(--ink); }
+
+  /* Salary distribution chart area */
+  .cp-dist-card {
+    background: var(--surface-2); border: 0.5px solid var(--line);
+    border-radius: var(--r16); padding: 20px; margin-bottom: 20px;
+  }
+  .cp-dist-title { font-weight: 600; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
+  .cp-dist-sub { font-size: 12px; color: var(--ink-3); margin-bottom: 16px; }
+  .cp-dist-bars { display: flex; align-items: flex-end; gap: 4px; height: 80px; }
+  .cp-dist-bar { flex: 1; border-radius: 3px 3px 0 0; transition: all 0.3s; cursor: pointer; }
+  .cp-dist-bar:hover { opacity: 0.8; }
+  .cp-dist-labels {
+    display: flex; justify-content: space-between; margin-top: 6px;
+    font-size: 10px; color: var(--ink-4);
+  }
+
+  /* Salary cards */
+  .cp-salary-list { display: flex; flex-direction: column; gap: 10px; }
+  .cp-salary-row {
+    background: var(--surface); border: 0.5px solid var(--line);
+    border-radius: var(--r12); padding: 16px 18px;
+    display: flex; align-items: center; gap: 16px; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .cp-salary-row:hover {
+    border-color: var(--brand); box-shadow: 0 4px 16px rgba(13,110,247,0.08);
+  }
+  .cp-salary-co-badge {
+    width: 40px; height: 40px; border-radius: var(--r8); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: white;
+  }
+  .cp-salary-info { flex: 1; min-width: 0; }
+  .cp-salary-role { font-weight: 600; font-size: 14px; color: var(--ink); margin-bottom: 2px; }
+  .cp-salary-meta { font-size: 12px; color: var(--ink-3); }
+  .cp-salary-total { text-align: right; flex-shrink: 0; }
+  .cp-salary-num {
+    font-family: var(--syne); font-weight: 700; font-size: 18px;
+    color: var(--ink); letter-spacing: -0.3px;
+  }
+  .cp-salary-breakdown { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+  .cp-percentile-bar { flex-shrink: 0; width: 80px; }
+  .cp-pct-label { font-size: 10px; color: var(--ink-3); margin-bottom: 4px; text-align: center; }
+  .cp-pct-track {
+    height: 4px; background: var(--surface-3); border-radius: 99px; overflow: hidden;
+  }
+  .cp-pct-fill { height: 100%; border-radius: 99px; background: var(--brand); }
+
+  /* ===== SCREEN 3: COMPANY PAGE ===== */
+  .cp-company-hero {
+    background: var(--surface-2); border-bottom: 0.5px solid var(--line-med);
+    padding: 28px 28px 0;
+  }
+  .cp-company-top { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+  .cp-company-logo-lg {
+    width: 64px; height: 64px; border-radius: var(--r16);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 800; color: white; flex-shrink: 0;
+  }
+  .cp-company-name { font-family: var(--syne); font-weight: 800; font-size: 28px; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .cp-company-tagline { font-size: 14px; color: var(--ink-3); margin-bottom: 10px; }
+  .cp-co-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .cp-co-badge {
+    padding: 4px 10px; border-radius: 99px; font-size: 11px; font-weight: 500;
+    background: var(--surface-3); color: var(--ink-2); border: 0.5px solid var(--line-med);
+  }
+  .cp-co-badge.green { background: var(--accent-light); color: var(--accent); border-color: transparent; }
+  .cp-company-tabs { display: flex; gap: 0; border-top: 0.5px solid var(--line-med); margin-top: 20px; }
+  .cp-co-tab {
+    padding: 12px 20px; font-size: 13px; font-weight: 500; color: var(--ink-3);
+    border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.15s;
+  }
+  .cp-co-tab.active { color: var(--brand); border-bottom-color: var(--brand); }
+
+  .cp-company-body { padding: 24px 28px; }
+  .cp-co-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .cp-co-metric {
+    background: var(--surface-2); border-radius: var(--r12); padding: 16px;
+    border: 0.5px solid var(--line);
+  }
+  .cp-co-metric-val {
+    font-family: var(--syne); font-weight: 700; font-size: 22px;
+    color: var(--ink); letter-spacing: -0.5px;
+  }
+  .cp-co-metric-lbl { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .cp-co-metric-delta {
+    font-size: 11px; font-weight: 500; color: var(--accent); margin-top: 4px;
+  }
+
+  .cp-level-table {
+    background: var(--surface); border: 0.5px solid var(--line);
+    border-radius: var(--r16); overflow: hidden; margin-bottom: 24px;
+  }
+  .cp-level-header {
+    display: grid; grid-template-columns: 100px 1fr 120px 120px 120px;
+    padding: 10px 16px; background: var(--surface-2);
+    border-bottom: 0.5px solid var(--line-med);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; color: var(--ink-3);
+  }
+  .cp-level-row {
+    display: grid; grid-template-columns: 100px 1fr 120px 120px 120px;
+    padding: 14px 16px; border-bottom: 0.5px solid var(--line);
+    transition: background 0.1s; cursor: pointer;
+  }
+  .cp-level-row:last-child { border-bottom: none; }
+  .cp-level-row:hover { background: var(--surface-2); }
+  .cp-level-badge {
+    display: inline-flex; padding: 3px 8px; border-radius: var(--r4); font-size: 11px; font-weight: 600;
+    background: var(--brand-light); color: var(--brand);
+  }
+  .cp-level-total { font-weight: 600; font-size: 14px; color: var(--ink); }
+  .cp-level-sub { font-size: 12px; color: var(--ink-3); }
+  .cp-progress-mini { height: 3px; border-radius: 99px; background: var(--surface-3); margin-top: 4px; overflow: hidden; }
+  .cp-progress-fill { height: 100%; border-radius: 99px; }
+
+  /* ===== SCREEN 4: COMP BREAKDOWN ===== */
+  .cp-breakdown-layout { display: grid; grid-template-columns: 1fr 380px; gap: 24px; padding: 24px 28px; }
+  .cp-breakdown-main {}
+  .cp-breakdown-sidebar {}
+
+  .cp-offer-header { margin-bottom: 24px; }
+  .cp-offer-title { font-family: var(--syne); font-weight: 700; font-size: 26px; letter-spacing: -0.5px; color: var(--ink); }
+  .cp-offer-sub { font-size: 14px; color: var(--ink-3); margin-top: 4px; }
+  .cp-offer-total { display: flex; align-items: baseline; gap: 8px; margin: 16px 0; }
+  .cp-offer-num {
+    font-family: var(--syne); font-weight: 800; font-size: 48px;
+    color: var(--ink); letter-spacing: -2px; line-height: 1;
+  }
+  .cp-offer-label { font-size: 14px; color: var(--ink-3); }
+
+  .cp-comp-stack { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  .cp-comp-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; border-radius: var(--r12);
+    background: var(--surface-2); border: 0.5px solid var(--line);
+  }
+  .cp-comp-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .cp-comp-name { flex: 1; font-size: 14px; font-weight: 500; color: var(--ink); }
+  .cp-comp-type { font-size: 11px; color: var(--ink-3); }
+  .cp-comp-value { font-family: var(--syne); font-weight: 600; font-size: 16px; color: var(--ink); }
+  .cp-comp-pct {
+    font-size: 11px; font-weight: 500; color: var(--ink-3); width: 32px; text-align: right;
+  }
+  .cp-comp-bar-wrap { width: 80px; height: 4px; border-radius: 99px; background: var(--surface-3); overflow: hidden; }
+  .cp-comp-bar-fill { height: 100%; border-radius: 99px; }
+
+  .cp-percentile-card {
+    background: var(--surface-2); border-radius: var(--r16); padding: 20px;
+    border: 0.5px solid var(--line); margin-bottom: 16px;
+  }
+  .cp-pct-heading { font-weight: 600; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
+  .cp-pct-body { font-size: 12px; color: var(--ink-3); margin-bottom: 16px; line-height: 1.5; }
+  .cp-pct-spectrum {
+    height: 8px; border-radius: 99px; margin-bottom: 8px;
+    background: linear-gradient(to right, #E24B4A, #F5A623, #00D4A0);
+    position: relative;
+  }
+  .cp-pct-marker {
+    position: absolute; top: 50%; width: 16px; height: 16px;
+    background: var(--surface); border: 2.5px solid var(--brand);
+    border-radius: 50%; transform: translate(-50%, -50%);
+  }
+  .cp-pct-scale { display: flex; justify-content: space-between; font-size: 10px; color: var(--ink-4); }
+  .cp-pct-result {
+    text-align: center; margin-top: 12px;
+    font-family: var(--syne); font-weight: 700; font-size: 20px; color: var(--ink);
+  }
+  .cp-pct-result small { font-family: var(--dm); font-size: 12px; font-weight: 400; color: var(--ink-3); }
+
+  .cp-ai-card {
+    border-radius: var(--r16); padding: 18px; border: 0.5px solid rgba(13,110,247,0.25);
+    background: var(--brand-light); margin-bottom: 16px;
+  }
+  .cp-ai-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .cp-ai-icon {
+    width: 24px; height: 24px; border-radius: var(--r4);
+    background: var(--brand); display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+  }
+  .cp-ai-title { font-size: 13px; font-weight: 600; color: var(--brand); }
+  .cp-ai-text { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+
+  .cp-action-row { display: flex; gap: 8px; }
+  .cp-action-btn {
+    flex: 1; padding: 10px; border-radius: var(--r8); font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.15s; border: 0.5px solid var(--line-med);
+    background: var(--surface); color: var(--ink-2);
+  }
+  .cp-action-btn:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-light); }
+  .cp-action-btn.primary { background: var(--brand); color: white; border-color: var(--brand); }
+  .cp-action-btn.primary:hover { background: var(--brand-dark); }
+
+  /* ===== SCREEN 5: COMPARISON ===== */
+  .cp-compare-wrap { padding: 24px 28px; }
+  .cp-compare-title { font-family: var(--syne); font-weight: 700; font-size: 22px; letter-spacing: -0.3px; margin-bottom: 4px; }
+  .cp-compare-sub { font-size: 14px; color: var(--ink-3); margin-bottom: 24px; }
+
+  .cp-compare-table {
+    width: 100%; border-collapse: collapse;
+    background: var(--surface); border-radius: var(--r16);
+    border: 0.5px solid var(--line); overflow: hidden;
+  }
+  .cp-compare-table th {
+    padding: 16px 18px; background: var(--surface-2); text-align: left;
+    font-size: 13px; font-weight: 600; color: var(--ink);
+    border-bottom: 0.5px solid var(--line-med); position: relative;
+  }
+  .cp-compare-table th.highlight { background: var(--brand-light); color: var(--brand); }
+  .cp-compare-table td {
+    padding: 14px 18px; border-bottom: 0.5px solid var(--line);
+    font-size: 14px; color: var(--ink-2); vertical-align: middle;
+  }
+  .cp-compare-table tr:last-child td { border-bottom: none; }
+  .cp-compare-table td.highlight { background: rgba(13,110,247,0.03); }
+  .cp-compare-table td.row-label { font-size: 12px; color: var(--ink-3); font-weight: 500; }
+  .cp-winner { color: var(--accent) !important; font-weight: 600; }
+  .cp-winner-badge {
+    display: inline-flex; padding: 2px 6px; border-radius: 99px; font-size: 10px; font-weight: 600;
+    background: var(--accent-light); color: var(--accent); margin-left: 4px;
+  }
+  .cp-compare-bar-cell { display: flex; align-items: center; gap: 8px; }
+  .cp-inline-bar { flex: 1; height: 6px; border-radius: 99px; background: var(--surface-3); overflow: hidden; max-width: 80px; }
+  .cp-inline-bar-fill { height: 100%; border-radius: 99px; }
+
+  /* ===== SCREEN 6: SUBMISSION FLOW ===== */
+  .cp-submit-wrap { max-width: 620px; margin: 0 auto; padding: 32px 28px; }
+  .cp-submit-header { text-align: center; margin-bottom: 32px; }
+  .cp-submit-title { font-family: var(--syne); font-weight: 700; font-size: 26px; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .cp-submit-sub { font-size: 15px; color: var(--ink-3); line-height: 1.6; }
+  .cp-progress-steps {
+    display: flex; align-items: center; gap: 0; margin-bottom: 32px;
+  }
+  .cp-step-item { display: flex; flex-direction: column; align-items: center; flex: 1; }
+  .cp-step-circle {
+    width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--line-med);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; color: var(--ink-3); background: var(--surface);
+    position: relative; z-index: 1;
+  }
+  .cp-step-circle.done { background: var(--accent); border-color: var(--accent); color: white; }
+  .cp-step-circle.current { border-color: var(--brand); color: var(--brand); background: var(--brand-light); }
+  .cp-step-label { font-size: 10px; color: var(--ink-3); margin-top: 4px; font-weight: 500; }
+  .cp-step-line { flex: 1; height: 2px; background: var(--line-med); margin-top: -16px; }
+  .cp-step-line.done { background: var(--accent); }
+
+  .cp-form-section {
+    background: var(--surface); border: 0.5px solid var(--line-med);
+    border-radius: var(--r16); padding: 24px; margin-bottom: 16px;
+  }
+  .cp-form-section-title { font-weight: 600; font-size: 15px; color: var(--ink); margin-bottom: 16px; }
+  .cp-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .cp-form-field { display: flex; flex-direction: column; gap: 6px; }
+  .cp-form-label { font-size: 12px; font-weight: 500; color: var(--ink-3); }
+  .cp-form-input {
+    padding: 10px 14px; border-radius: var(--r8); font-family: var(--dm); font-size: 14px;
+    border: 0.5px solid var(--line-med); background: var(--surface-2); color: var(--ink);
+    outline: none; transition: border-color 0.15s;
+  }
+  .cp-form-input:focus { border-color: var(--brand); background: var(--surface); }
+
+  .cp-privacy-row { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: var(--r8); background: var(--accent-light); }
+  .cp-privacy-text { font-size: 12px; color: var(--ink-2); line-height: 1.5; }
+  .cp-privacy-icon { font-size: 16px; flex-shrink: 0; }
+
+  .cp-submit-btn {
+    width: 100%; padding: 14px; border-radius: var(--r12); font-size: 15px; font-weight: 600;
+    background: var(--brand); color: white; border: none; cursor: pointer;
+    transition: all 0.2s; margin-top: 8px; font-family: var(--dm);
+  }
+  .cp-submit-btn:hover { background: var(--brand-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(13,110,247,0.25); }
+
+  /* Mobile toggle */
+  .cp-mobile-nav {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--surface); border-top: 0.5px solid var(--line-med);
+    padding: 8px 16px 12px; z-index: 200;
+    justify-content: space-around;
+  }
+  .cp-mobile-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    font-size: 10px; color: var(--ink-3); cursor: pointer; padding: 4px 8px;
+    border: none; background: none; font-family: var(--dm);
+  }
+  .cp-mobile-btn.active { color: var(--brand); }
+  .cp-mobile-btn-icon { font-size: 20px; }
+
+  @media (max-width: 640px) {
+    .cp-hero-h1 { font-size: 28px; }
+    .cp-discovery-layout { grid-template-columns: 1fr; }
+    .cp-filters-panel { display: none; }
+    .cp-breakdown-layout { grid-template-columns: 1fr; }
+    .cp-co-metrics { grid-template-columns: 1fr 1fr; }
+    .cp-mobile-nav { display: flex; }
+    .cp-nav-links, .cp-nav-actions .cp-btn-ghost { display: none; }
+    .cp-compare-table { font-size: 12px; }
+    .cp-form-row { grid-template-columns: 1fr; }
+  }
+
+  /* highlight pulse */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .cp-live-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+</style>
+
+<div class="cp-root">
+  <!-- NAV -->
+  <nav class="cp-nav">
+    <div class="cp-logo">
+      <div class="cp-logo-dot"></div>
+      Comp<span>Track</span>
+    </div>
+    <div class="cp-nav-links">
+      <button class="cp-nav-link active" onclick="showScreen('home')">Explore</button>
+      <button class="cp-nav-link" onclick="showScreen('discover')">Salaries</button>
+      <button class="cp-nav-link" onclick="showScreen('compare')">Compare</button>
+      <button class="cp-nav-link" onclick="showScreen('submit')">Submit</button>
+    </div>
+    <div class="cp-nav-actions">
+      <button class="cp-btn-ghost" onclick="showScreen('home')">Log in</button>
+      <button class="cp-btn-primary" onclick="showScreen('submit')">Share salary ↗</button>
+    </div>
+  </nav>
+
+  <!-- ===== SCREEN: HOME ===== -->
+  <div id="screen-home" class="cp-screen active">
+    <div class="cp-hero">
+      <div class="cp-hero-badge">
+        <div class="cp-live-dot"></div>
+        2.1M verified salaries · Updated daily
+      </div>
+      <h1 class="cp-hero-h1">Know your<br>worth. <em>Exactly.</em></h1>
+      <p class="cp-hero-sub">Real compensation data from real engineers, PMs, and designers. No surveys. No estimates. Verified salary intelligence.</p>
+      <div class="cp-search-bar">
+        <input type="text" placeholder="Search role, company, or skill..." id="hero-search" />
+        <button class="cp-search-btn" onclick="showScreen('discover')">Explore salaries →</button>
+      </div>
+      <div class="cp-stats-row">
+        <div class="cp-stat"><div class="cp-stat-num">₹42L</div><div class="cp-stat-label">Median SDE-2 in Bangalore</div></div>
+        <div class="cp-stat"><div class="cp-stat-num">312K</div><div class="cp-stat-label">Data points this month</div></div>
+        <div class="cp-stat"><div class="cp-stat-num">4.1%</div><div class="cp-stat-label">Avg salary growth YoY</div></div>
+        <div class="cp-stat"><div class="cp-stat-num">98%</div><div class="cp-stat-label">Anonymity guaranteed</div></div>
+      </div>
+    </div>
+
+    <div class="cp-insight-strip">
+      <div>
+        <div class="cp-insight-label">✦ Market pulse</div>
+        <div class="cp-insight-text">AI/ML roles at FAANG India are paying 38% more<br>than non-AI equivalents at the same level</div>
+      </div>
+      <button class="cp-insight-cta" onclick="showScreen('discover')">Explore trend →</button>
+    </div>
+
+    <div class="cp-section">
+      <div class="cp-section-head">
+        <div class="cp-section-title">Trending roles</div>
+        <div class="cp-section-more" onclick="showScreen('discover')">See all →</div>
+      </div>
+      <div class="cp-role-grid">
+        <div class="cp-role-card" onclick="showScreen('discover')">
+          <div class="cp-role-card-icon" style="background: var(--brand-light);">💻</div>
+          <div class="cp-role-name">Software Engineer II</div>
+          <div class="cp-role-range">₹28L – ₹68L</div>
+          <span class="cp-role-trend">↑ +8.2% YoY</span>
+        </div>
+        <div class="cp-role-card" onclick="showScreen('discover')">
+          <div class="cp-role-card-icon" style="background: var(--warm-light);">📐</div>
+          <div class="cp-role-name">Product Manager</div>
+          <div class="cp-role-range">₹24L – ₹72L</div>
+          <span class="cp-role-trend">↑ +11.4% YoY</span>
+        </div>
+        <div class="cp-role-card" onclick="showScreen('discover')">
+          <div class="cp-role-card-icon" style="background: var(--accent-light);">🤖</div>
+          <div class="cp-role-name">ML Engineer</div>
+          <div class="cp-role-range">₹36L – ₹110L</div>
+          <span class="cp-role-trend">↑ +19.6% YoY</span>
+        </div>
+        <div class="cp-role-card" onclick="showScreen('discover')">
+          <div class="cp-role-card-icon" style="background: var(--gold-light);">🎨</div>
+          <div class="cp-role-name">UX Designer</div>
+          <div class="cp-role-range">₹18L – ₹48L</div>
+          <span class="cp-role-trend down">↓ -1.2% YoY</span>
+        </div>
+        <div class="cp-role-card" onclick="showScreen('discover')">
+          <div class="cp-role-card-icon" style="background: #f3e8ff;">📊</div>
+          <div class="cp-role-name">Data Scientist</div>
+          <div class="cp-role-range">₹22L – ₹82L</div>
+          <span class="cp-role-trend">↑ +14.3% YoY</span>
+        </div>
+        <div class="cp-role-card" onclick="showScreen('discover')">
+          <div class="cp-role-card-icon" style="background: var(--surface-3);">🔐</div>
+          <div class="cp-role-name">Security Engineer</div>
+          <div class="cp-role-range">₹32L – ₹85L</div>
+          <span class="cp-role-trend">↑ +6.8% YoY</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cp-section">
+      <div class="cp-section-head">
+        <div class="cp-section-title">Top companies</div>
+        <div class="cp-section-more" onclick="showScreen('company')">See all →</div>
+      </div>
+      <div class="cp-company-row">
+        <div class="cp-company-chip" onclick="showScreen('company')">
+          <div class="cp-company-logo" style="background:#4285F4;">G</div>
+          <div><div class="cp-company-chip-name">Google</div><div class="cp-company-chip-med">Median ₹82L</div></div>
+        </div>
+        <div class="cp-company-chip" onclick="showScreen('company')">
+          <div class="cp-company-logo" style="background:#FF9900;">A</div>
+          <div><div class="cp-company-chip-name">Amazon</div><div class="cp-company-chip-med">Median ₹64L</div></div>
+        </div>
+        <div class="cp-company-chip" onclick="showScreen('company')">
+          <div class="cp-company-logo" style="background:#0A66C2;">in</div>
+          <div><div class="cp-company-chip-name">Microsoft</div><div class="cp-company-chip-med">Median ₹71L</div></div>
+        </div>
+        <div class="cp-company-chip" onclick="showScreen('company')">
+          <div class="cp-company-logo" style="background:#1877F2;">f</div>
+          <div><div class="cp-company-chip-name">Meta</div><div class="cp-company-chip-med">Median ₹88L</div></div>
+        </div>
+        <div class="cp-company-chip" onclick="showScreen('company')">
+          <div class="cp-company-logo" style="background:#E31837;">F</div>
+          <div><div class="cp-company-chip-name">Flipkart</div><div class="cp-company-chip-med">Median ₹48L</div></div>
+        </div>
+        <div class="cp-company-chip" onclick="showScreen('company')">
+          <div class="cp-company-logo" style="background:#2196F3;">Mj</div>
+          <div><div class="cp-company-chip-name">Meesho</div><div class="cp-company-chip-med">Median ₹52L</div></div>
+        </div>
+        <div class="cp-company-chip" onclick="showScreen('company')">
+          <div class="cp-company-logo" style="background:#6c2dc7;">Sw</div>
+          <div><div class="cp-company-chip-name">Swiggy</div><div class="cp-company-chip-med">Median ₹46L</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN: DISCOVER ===== -->
+  <div id="screen-discover" class="cp-screen">
+    <div class="cp-discovery-layout">
+      <div class="cp-filters-panel">
+        <div style="font-family: var(--syne); font-weight: 700; font-size: 14px; margin-bottom: 16px; letter-spacing: -0.2px;">Filters</div>
+        <div class="cp-filter-group">
+          <div class="cp-filter-label">Role type</div>
+          <div class="cp-filter-chips">
+            <span class="cp-chip active">Engineering</span>
+            <span class="cp-chip">Product</span>
+            <span class="cp-chip">Design</span>
+            <span class="cp-chip">Data</span>
+            <span class="cp-chip">Sales</span>
+            <span class="cp-chip">Ops</span>
+          </div>
+        </div>
+        <div class="cp-filter-group">
+          <div class="cp-filter-label">Experience level</div>
+          <div class="cp-filter-chips">
+            <span class="cp-chip">0–2 yrs</span>
+            <span class="cp-chip active">3–6 yrs</span>
+            <span class="cp-chip">7–10 yrs</span>
+            <span class="cp-chip">10+ yrs</span>
+          </div>
+        </div>
+        <div class="cp-filter-group">
+          <div class="cp-filter-label">Location</div>
+          <div class="cp-filter-chips">
+            <span class="cp-chip active">Bangalore</span>
+            <span class="cp-chip">Mumbai</span>
+            <span class="cp-chip">Delhi NCR</span>
+            <span class="cp-chip">Hyderabad</span>
+            <span class="cp-chip">Remote</span>
+          </div>
+        </div>
+        <div class="cp-filter-group">
+          <div class="cp-filter-label">Total comp range</div>
+          <input type="range" class="cp-filter-slider" min="0" max="200" value="120" oninput="updateRange(this)">
+          <div class="cp-filter-range"><span>₹0L</span><span id="range-val">₹120L</span></div>
+        </div>
+        <div class="cp-filter-group">
+          <div class="cp-filter-label">Company type</div>
+          <div class="cp-filter-chips">
+            <span class="cp-chip active">FAANG</span>
+            <span class="cp-chip">Unicorn</span>
+            <span class="cp-chip">Series B+</span>
+            <span class="cp-chip">MNC</span>
+            <span class="cp-chip">Service</span>
+          </div>
+        </div>
+        <div style="margin-top: 20px;">
+          <button class="cp-btn-primary" style="width: 100%;">Apply filters</button>
+        </div>
+      </div>
+      <div class="cp-results-panel">
+        <div class="cp-results-header">
+          <div>
+            <div class="cp-results-count">1,847 salary data points</div>
+            <div style="font-size: 12px; color: var(--ink-3); margin-top: 2px;">SDE · 3–6 yrs · Bangalore</div>
+          </div>
+          <div class="cp-sort-row">
+            <button class="cp-sort-btn active">Total comp ↓</button>
+            <button class="cp-sort-btn">Base salary</button>
+            <button class="cp-sort-btn">Recency</button>
+          </div>
+        </div>
+
+        <div class="cp-dist-card">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+            <div>
+              <div class="cp-dist-title">Salary distribution</div>
+              <div class="cp-dist-sub">Based on 1,847 verified submissions</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-family: var(--syne); font-weight: 700; font-size: 22px; color: var(--ink);">₹48L</div>
+              <div style="font-size: 11px; color: var(--ink-3);">Median total comp</div>
+            </div>
+          </div>
+          <div class="cp-dist-bars" id="dist-bars"></div>
+          <div class="cp-dist-labels">
+            <span>₹20L</span><span>₹35L</span><span>₹50L</span><span>₹70L</span><span>₹90L+</span>
+          </div>
+        </div>
+
+        <div class="cp-salary-list">
+          <div class="cp-salary-row" onclick="showScreen('breakdown')">
+            <div class="cp-salary-co-badge" style="background:#4285F4;">G</div>
+            <div class="cp-salary-info">
+              <div class="cp-salary-role">Software Engineer L5</div>
+              <div class="cp-salary-meta">Google · Bangalore · 6 yrs exp · SDE-3</div>
+            </div>
+            <div class="cp-percentile-bar">
+              <div class="cp-pct-label">92nd pct</div>
+              <div class="cp-pct-track"><div class="cp-pct-fill" style="width: 92%;"></div></div>
+            </div>
+            <div class="cp-salary-total">
+              <div class="cp-salary-num">₹1.2Cr</div>
+              <div class="cp-salary-breakdown">₹58L + ₹42L RSU + ₹20L bonus</div>
+            </div>
+          </div>
+          <div class="cp-salary-row" onclick="showScreen('breakdown')">
+            <div class="cp-salary-co-badge" style="background:#1877F2;">M</div>
+            <div class="cp-salary-info">
+              <div class="cp-salary-role">Software Engineer E5</div>
+              <div class="cp-salary-meta">Meta · Hyderabad · 7 yrs exp · SDE-3</div>
+            </div>
+            <div class="cp-percentile-bar">
+              <div class="cp-pct-label">95th pct</div>
+              <div class="cp-pct-track"><div class="cp-pct-fill" style="width: 95%;"></div></div>
+            </div>
+            <div class="cp-salary-total">
+              <div class="cp-salary-num">₹1.4Cr</div>
+              <div class="cp-salary-breakdown">₹62L + ₹68L RSU + ₹10L bonus</div>
+            </div>
+          </div>
+          <div class="cp-salary-row" onclick="showScreen('breakdown')">
+            <div class="cp-salary-co-badge" style="background:#FF9900;">A</div>
+            <div class="cp-salary-info">
+              <div class="cp-salary-role">SDE-III</div>
+              <div class="cp-salary-meta">Amazon · Bangalore · 5 yrs exp · SDE-2/3</div>
+            </div>
+            <div class="cp-percentile-bar">
+              <div class="cp-pct-label">78th pct</div>
+              <div class="cp-pct-track"><div class="cp-pct-fill" style="width: 78%;"></div></div>
+            </div>
+            <div class="cp-salary-total">
+              <div class="cp-salary-num">₹82L</div>
+              <div class="cp-salary-breakdown">₹48L + ₹24L RSU + ₹10L sign-on</div>
+            </div>
+          </div>
+          <div class="cp-salary-row" onclick="showScreen('breakdown')">
+            <div class="cp-salary-co-badge" style="background:#E31837;">F</div>
+            <div class="cp-salary-info">
+              <div class="cp-salary-role">Senior SDE</div>
+              <div class="cp-salary-meta">Flipkart · Bangalore · 4 yrs exp · SSDE</div>
+            </div>
+            <div class="cp-percentile-bar">
+              <div class="cp-pct-label">65th pct</div>
+              <div class="cp-pct-track"><div class="cp-pct-fill" style="width: 65%;"></div></div>
+            </div>
+            <div class="cp-salary-total">
+              <div class="cp-salary-num">₹56L</div>
+              <div class="cp-salary-breakdown">₹38L + ₹12L RSU + ₹6L bonus</div>
+            </div>
+          </div>
+          <div class="cp-salary-row" onclick="showScreen('breakdown')">
+            <div class="cp-salary-co-badge" style="background:#6c2dc7;">Sw</div>
+            <div class="cp-salary-info">
+              <div class="cp-salary-role">SDE-2</div>
+              <div class="cp-salary-meta">Swiggy · Bangalore · 3 yrs exp · Mid-level</div>
+            </div>
+            <div class="cp-percentile-bar">
+              <div class="cp-pct-label">54th pct</div>
+              <div class="cp-pct-track"><div class="cp-pct-fill" style="width: 54%;"></div></div>
+            </div>
+            <div class="cp-salary-total">
+              <div class="cp-salary-num">₹42L</div>
+              <div class="cp-salary-breakdown">₹32L + ₹8L ESOP + ₹2L bonus</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN: COMPANY ===== -->
+  <div id="screen-company" class="cp-screen">
+    <div class="cp-company-hero">
+      <div class="cp-company-top">
+        <div class="cp-company-logo-lg" style="background:#4285F4;">G</div>
+        <div>
+          <div class="cp-company-name">Google</div>
+          <div class="cp-company-tagline">Search, Cloud, AI — Mountain View, CA · 180,000 employees</div>
+          <div class="cp-co-badges">
+            <span class="cp-co-badge green">Top payer</span>
+            <span class="cp-co-badge">FAANG</span>
+            <span class="cp-co-badge">Public</span>
+            <span class="cp-co-badge">1,240 salaries verified</span>
+          </div>
+        </div>
+      </div>
+      <div class="cp-company-tabs">
+        <span class="cp-co-tab active">Overview</span>
+        <span class="cp-co-tab">Salaries by level</span>
+        <span class="cp-co-tab">Team breakdown</span>
+        <span class="cp-co-tab">Offers (47)</span>
+      </div>
+    </div>
+    <div class="cp-company-body">
+      <div class="cp-co-metrics">
+        <div class="cp-co-metric">
+          <div class="cp-co-metric-val">₹82L</div>
+          <div class="cp-co-metric-lbl">Median total comp</div>
+          <div class="cp-co-metric-delta">↑ +9.2% vs last year</div>
+        </div>
+        <div class="cp-co-metric">
+          <div class="cp-co-metric-val">4.3★</div>
+          <div class="cp-co-metric-lbl">Overall rating</div>
+          <div class="cp-co-metric-delta" style="color: var(--ink-3);">from 2,841 reviews</div>
+        </div>
+        <div class="cp-co-metric">
+          <div class="cp-co-metric-val">L3–L7</div>
+          <div class="cp-co-metric-lbl">IC levels (India)</div>
+          <div class="cp-co-metric-delta" style="color: var(--ink-3);">L3 entry · L7 staff+</div>
+        </div>
+        <div class="cp-co-metric">
+          <div class="cp-co-metric-val">28%</div>
+          <div class="cp-co-metric-lbl">Avg RSU in total comp</div>
+          <div class="cp-co-metric-delta">↑ above market avg</div>
+        </div>
+      </div>
+
+      <div class="cp-level-table">
+        <div class="cp-level-header">
+          <div>Level</div>
+          <div>Role</div>
+          <div>Base</div>
+          <div>Stock (RSU)</div>
+          <div>Total TC</div>
+        </div>
+        <div class="cp-level-row" onclick="showScreen('breakdown')">
+          <div><span class="cp-level-badge">L3</span></div>
+          <div><div style="font-size:13px;font-weight:500;color:var(--ink);">SWE · New Grad</div><div style="font-size:11px;color:var(--ink-3);">0–2 yrs experience</div></div>
+          <div><div class="cp-level-total">₹24L</div><div class="cp-level-sub">+ ₹2L bonus</div></div>
+          <div><div class="cp-level-total">₹12L/yr</div><div><div class="cp-progress-mini"><div class="cp-progress-fill" style="width:30%;background:var(--brand);"></div></div></div></div>
+          <div><div class="cp-level-total" style="color:var(--brand);">₹38L</div><div class="cp-level-sub">verified avg</div></div>
+        </div>
+        <div class="cp-level-row" onclick="showScreen('breakdown')">
+          <div><span class="cp-level-badge">L4</span></div>
+          <div><div style="font-size:13px;font-weight:500;color:var(--ink);">SWE · Mid-level</div><div style="font-size:11px;color:var(--ink-3);">2–5 yrs experience</div></div>
+          <div><div class="cp-level-total">₹38L</div><div class="cp-level-sub">+ ₹5L bonus</div></div>
+          <div><div class="cp-level-total">₹24L/yr</div><div><div class="cp-progress-mini"><div class="cp-progress-fill" style="width:52%;background:var(--brand);"></div></div></div></div>
+          <div><div class="cp-level-total" style="color:var(--brand);">₹67L</div><div class="cp-level-sub">verified avg</div></div>
+        </div>
+        <div class="cp-level-row" onclick="showScreen('breakdown')">
+          <div><span class="cp-level-badge">L5</span></div>
+          <div><div style="font-size:13px;font-weight:500;color:var(--ink);">SWE · Senior</div><div style="font-size:11px;color:var(--ink-3);">5–8 yrs experience</div></div>
+          <div><div class="cp-level-total">₹56L</div><div class="cp-level-sub">+ ₹10L bonus</div></div>
+          <div><div class="cp-level-total">₹48L/yr</div><div><div class="cp-progress-mini"><div class="cp-progress-fill" style="width:72%;background:var(--accent);"></div></div></div></div>
+          <div><div class="cp-level-total" style="color:var(--brand);">₹1.14Cr</div><div class="cp-level-sub">verified avg</div></div>
+        </div>
+        <div class="cp-level-row" onclick="showScreen('breakdown')">
+          <div><span class="cp-level-badge">L6</span></div>
+          <div><div style="font-size:13px;font-weight:500;color:var(--ink);">SWE · Staff</div><div style="font-size:11px;color:var(--ink-3);">8–12 yrs experience</div></div>
+          <div><div class="cp-level-total">₹80L</div><div class="cp-level-sub">+ ₹18L bonus</div></div>
+          <div><div class="cp-level-total">₹90L/yr</div><div><div class="cp-progress-mini"><div class="cp-progress-fill" style="width:88%;background:var(--gold);"></div></div></div></div>
+          <div><div class="cp-level-total" style="color:var(--brand);">₹1.88Cr</div><div class="cp-level-sub">verified avg</div></div>
+        </div>
+        <div class="cp-level-row">
+          <div><span class="cp-level-badge">L7</span></div>
+          <div><div style="font-size:13px;font-weight:500;color:var(--ink);">SWE · Principal</div><div style="font-size:11px;color:var(--ink-3);">12+ yrs experience</div></div>
+          <div><div class="cp-level-total">₹1.2Cr</div><div class="cp-level-sub">+ ₹32L bonus</div></div>
+          <div><div class="cp-level-total">₹1.6Cr/yr</div><div><div class="cp-progress-mini"><div class="cp-progress-fill" style="width:100%;background:var(--warm);"></div></div></div></div>
+          <div><div class="cp-level-total" style="color:var(--brand);">₹3.12Cr</div><div class="cp-level-sub">verified avg</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN: BREAKDOWN ===== -->
+  <div id="screen-breakdown" class="cp-screen">
+    <div class="cp-breakdown-layout">
+      <div class="cp-breakdown-main">
+        <div class="cp-offer-header">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <div style="width:36px;height:36px;border-radius:var(--r8);background:#4285F4;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:white;">G</div>
+            <div>
+              <div style="font-weight:600;font-size:15px;">Google · Bangalore</div>
+              <div style="font-size:12px;color:var(--ink-3);">Software Engineer L5 · Verified April 2026</div>
+            </div>
+          </div>
+          <div class="cp-offer-title">Compensation Breakdown</div>
+          <div class="cp-offer-sub">Total annual compensation, annualized over 4-year vest</div>
+          <div class="cp-offer-total">
+            <div class="cp-offer-num">₹1.14Cr</div>
+            <div class="cp-offer-label">/ year</div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <span style="padding:4px 10px;border-radius:99px;font-size:11px;font-weight:500;background:var(--accent-light);color:var(--accent);">↑ 92nd percentile</span>
+            <span style="padding:4px 10px;border-radius:99px;font-size:11px;font-weight:500;background:var(--brand-light);color:var(--brand);">Above market rate</span>
+          </div>
+        </div>
+
+        <div class="cp-comp-stack">
+          <div class="cp-comp-item">
+            <div class="cp-comp-dot" style="background:var(--brand);"></div>
+            <div class="cp-comp-name">Base salary<div class="cp-comp-type">Fixed · Monthly</div></div>
+            <div class="cp-comp-bar-wrap"><div class="cp-comp-bar-fill" style="width:49%;background:var(--brand);"></div></div>
+            <div class="cp-comp-pct">49%</div>
+            <div class="cp-comp-value">₹56L</div>
+          </div>
+          <div class="cp-comp-item">
+            <div class="cp-comp-dot" style="background:var(--accent);"></div>
+            <div class="cp-comp-name">RSU / Stock Grant<div class="cp-comp-type">Annualized · 4yr vest · 1yr cliff</div></div>
+            <div class="cp-comp-bar-wrap"><div class="cp-comp-bar-fill" style="width:42%;background:var(--accent);"></div></div>
+            <div class="cp-comp-pct">42%</div>
+            <div class="cp-comp-value">₹48L</div>
+          </div>
+          <div class="cp-comp-item">
+            <div class="cp-comp-dot" style="background:var(--gold);"></div>
+            <div class="cp-comp-name">Annual bonus<div class="cp-comp-type">Performance-based · Avg 15–20%</div></div>
+            <div class="cp-comp-bar-wrap"><div class="cp-comp-bar-fill" style="width:9%;background:var(--gold);"></div></div>
+            <div class="cp-comp-pct">9%</div>
+            <div class="cp-comp-value">₹10L</div>
+          </div>
+        </div>
+
+        <div style="background:var(--surface-2);border-radius:var(--r16);padding:20px;border:0.5px solid var(--line);margin-bottom:16px;">
+          <div style="font-weight:600;font-size:14px;margin-bottom:14px;">Year-by-year projection</div>
+          <div style="display:flex;flex-direction:column;gap:8px;" id="yr-projection"></div>
+        </div>
+
+        <div style="background:var(--surface-2);border-radius:var(--r16);padding:20px;border:0.5px solid var(--line);margin-bottom:16px;">
+          <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Benefits & perks</div>
+          <div style="font-size:12px;color:var(--ink-3);margin-bottom:12px;">Estimated annual value: ₹8–12L</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="padding:5px 11px;border-radius:99px;font-size:12px;background:var(--surface-3);color:var(--ink-2);">🏥 Medical + dental + vision</span>
+            <span style="padding:5px 11px;border-radius:99px;font-size:12px;background:var(--surface-3);color:var(--ink-2);">🏠 WFH allowance</span>
+            <span style="padding:5px 11px;border-radius:99px;font-size:12px;background:var(--surface-3);color:var(--ink-2);">🍱 Free meals on campus</span>
+            <span style="padding:5px 11px;border-radius:99px;font-size:12px;background:var(--surface-3);color:var(--ink-2);">📚 ₹1.5L Learning budget</span>
+            <span style="padding:5px 11px;border-radius:99px;font-size:12px;background:var(--surface-3);color:var(--ink-2);">🎓 Tuition assistance</span>
+            <span style="padding:5px 11px;border-radius:99px;font-size:12px;background:var(--surface-3);color:var(--ink-2);">🏋️ Gym reimbursement</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cp-breakdown-sidebar">
+        <div class="cp-percentile-card">
+          <div class="cp-pct-heading">Market percentile</div>
+          <div class="cp-pct-body">This comp is in the top 8% for SDE L5 / Senior roles in Bangalore, based on 1,847 verified data points.</div>
+          <div class="cp-pct-spectrum">
+            <div class="cp-pct-marker" style="left: 92%;"></div>
+          </div>
+          <div class="cp-pct-scale"><span>P10</span><span>P50</span><span>P75</span><span>P90</span></div>
+          <div class="cp-pct-result">P92 <small>of all SDE Senior in BLR</small></div>
+        </div>
+
+        <div class="cp-ai-card">
+          <div class="cp-ai-header">
+            <div class="cp-ai-icon" style="color:white;font-size:12px;">✦</div>
+            <div class="cp-ai-title">AI salary insight</div>
+          </div>
+          <div class="cp-ai-text">Based on your profile (5 yrs, ML background), this offer is strong. Typical negotiation window at this level is +₹8–14L in RSUs. Consider asking for accelerated vesting or a refresh grant instead of a sign-on.</div>
+        </div>
+
+        <div style="background:var(--surface-2);border-radius:var(--r16);padding:16px;border:0.5px solid var(--line);margin-bottom:16px;">
+          <div style="font-weight:600;font-size:13px;margin-bottom:12px;">Similar offers nearby</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div style="font-size:13px;color:var(--ink-2);">Meta E5 · Hyderabad</div>
+              <div style="font-family:var(--syne);font-weight:600;font-size:14px;">₹1.4Cr</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div style="font-size:13px;color:var(--ink-2);">Microsoft L62 · BLR</div>
+              <div style="font-family:var(--syne);font-weight:600;font-size:14px;">₹96L</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div style="font-size:13px;color:var(--ink-2);">Amazon SDE-III · BLR</div>
+              <div style="font-family:var(--syne);font-weight:600;font-size:14px;">₹82L</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cp-action-row" style="flex-direction:column;gap:8px;">
+          <button class="cp-action-btn primary" onclick="showScreen('compare')">Compare with other offers</button>
+          <button class="cp-action-btn" onclick="showScreen('submit')">Submit your offer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN: COMPARE ===== -->
+  <div id="screen-compare" class="cp-screen">
+    <div class="cp-compare-wrap">
+      <div class="cp-compare-title">Side-by-side comparison</div>
+      <div class="cp-compare-sub">Compare compensation packages across FAANG companies for Senior SDE · 5–7 yrs · Bangalore</div>
+
+      <div style="overflow-x:auto;">
+        <table class="cp-compare-table">
+          <thead>
+            <tr>
+              <th style="width:160px;">Component</th>
+              <th class="highlight">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div style="width:24px;height:24px;border-radius:4px;background:#4285F4;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;">G</div>
+                  Google L5
+                </div>
+                <div style="font-size:10px;font-weight:400;color:var(--brand);margin-top:2px;">★ Best total comp</div>
+              </th>
+              <th>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div style="width:24px;height:24px;border-radius:4px;background:#1877F2;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;">M</div>
+                  Meta E5
+                </div>
+              </th>
+              <th>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div style="width:24px;height:24px;border-radius:4px;background:#FF9900;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;">A</div>
+                  Amazon SDE3
+                </div>
+              </th>
+              <th>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div style="width:24px;height:24px;border-radius:4px;background:#0A66C2;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;">MS</div>
+                  Microsoft L62
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">Base salary</td>
+              <td class="highlight cp-winner">₹56L <span class="cp-winner-badge">Best</span></td>
+              <td>₹62L</td>
+              <td>₹48L</td>
+              <td>₹52L</td>
+            </tr>
+            <tr>
+              <td class="row-label">Annual RSU</td>
+              <td class="highlight">₹48L</td>
+              <td class="cp-winner" style="color:var(--accent);font-weight:600;">₹68L <span class="cp-winner-badge" style="background:var(--accent-light);color:var(--accent);">Best</span></td>
+              <td>₹24L</td>
+              <td>₹30L</td>
+            </tr>
+            <tr>
+              <td class="row-label">Target bonus</td>
+              <td class="highlight">₹10L</td>
+              <td>₹8L</td>
+              <td>₹10L</td>
+              <td class="cp-winner" style="color:var(--accent);font-weight:600;">₹14L <span class="cp-winner-badge" style="background:var(--accent-light);color:var(--accent);">Best</span></td>
+            </tr>
+            <tr>
+              <td class="row-label">Total comp</td>
+              <td class="highlight" style="font-family:var(--syne);font-weight:700;font-size:16px;color:var(--brand);">₹1.14Cr</td>
+              <td style="font-family:var(--syne);font-weight:700;font-size:16px;color:var(--accent);">₹1.38Cr</td>
+              <td style="font-family:var(--syne);font-weight:700;font-size:15px;">₹82L</td>
+              <td style="font-family:var(--syne);font-weight:700;font-size:15px;">₹96L</td>
+            </tr>
+            <tr>
+              <td class="row-label">Work-life score</td>
+              <td class="highlight cp-winner">4.4 ★ <span class="cp-winner-badge">Best</span></td>
+              <td>3.8 ★</td>
+              <td>3.2 ★</td>
+              <td>4.1 ★</td>
+            </tr>
+            <tr>
+              <td class="row-label">RSU vest cliff</td>
+              <td class="highlight">1 yr</td>
+              <td>1 yr</td>
+              <td>1 yr</td>
+              <td>1 yr</td>
+            </tr>
+            <tr>
+              <td class="row-label">Career growth</td>
+              <td class="highlight">
+                <div class="cp-compare-bar-cell">
+                  <div class="cp-inline-bar"><div class="cp-inline-bar-fill" style="width:80%;background:var(--brand);"></div></div>
+                  <span style="font-size:12px;">4.0</span>
+                </div>
+              </td>
+              <td>
+                <div class="cp-compare-bar-cell">
+                  <div class="cp-inline-bar"><div class="cp-inline-bar-fill" style="width:78%;background:var(--accent);"></div></div>
+                  <span style="font-size:12px;">3.9</span>
+                </div>
+              </td>
+              <td>
+                <div class="cp-compare-bar-cell">
+                  <div class="cp-inline-bar"><div class="cp-inline-bar-fill" style="width:70%;background:var(--gold);"></div></div>
+                  <span style="font-size:12px;">3.5</span>
+                </div>
+              </td>
+              <td>
+                <div class="cp-compare-bar-cell">
+                  <div class="cp-inline-bar"><div class="cp-inline-bar-fill" style="width:82%;background:var(--brand);"></div></div>
+                  <span style="font-size:12px;">4.1</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="row-label">Benefits value</td>
+              <td class="highlight cp-winner">₹10L est. <span class="cp-winner-badge">Best</span></td>
+              <td>₹7L est.</td>
+              <td>₹4L est.</td>
+              <td>₹6L est.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:16px;padding:16px;border-radius:var(--r12);background:var(--gold-light);border:0.5px solid rgba(245,166,35,0.25);">
+        <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;">✦ Smart summary</div>
+        <div style="font-size:13px;color:var(--ink-2);line-height:1.6;">Meta pays the highest total cash (₹1.38Cr), but Google's WLB, perks, and long-term brand value often make it preferable for career-stage 5–7 years. If maximizing raw comp is the priority, Meta E5 leads — but ask for RSU acceleration and a refresh grant schedule.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN: SUBMIT ===== -->
+  <div id="screen-submit" class="cp-screen">
+    <div class="cp-submit-wrap">
+      <div class="cp-submit-header">
+        <div class="cp-submit-title">Share your compensation</div>
+        <div class="cp-submit-sub">Help 2.1M professionals make smarter decisions. Takes 3 minutes. Fully anonymous.</div>
+      </div>
+
+      <div class="cp-progress-steps">
+        <div class="cp-step-item">
+          <div class="cp-step-circle current">1</div>
+          <div class="cp-step-label">Role</div>
+        </div>
+        <div class="cp-step-line"></div>
+        <div class="cp-step-item">
+          <div class="cp-step-circle">2</div>
+          <div class="cp-step-label">Comp</div>
+        </div>
+        <div class="cp-step-line"></div>
+        <div class="cp-step-item">
+          <div class="cp-step-circle">3</div>
+          <div class="cp-step-label">Verify</div>
+        </div>
+        <div class="cp-step-line"></div>
+        <div class="cp-step-item">
+          <div class="cp-step-circle">4</div>
+          <div class="cp-step-label">Unlock</div>
+        </div>
+      </div>
+
+      <div class="cp-form-section">
+        <div class="cp-form-section-title">About your role</div>
+        <div class="cp-form-row">
+          <div class="cp-form-field">
+            <label class="cp-form-label">Company</label>
+            <input type="text" class="cp-form-input" placeholder="e.g. Google, Amazon..." />
+          </div>
+          <div class="cp-form-field">
+            <label class="cp-form-label">Job title</label>
+            <input type="text" class="cp-form-input" placeholder="e.g. Software Engineer" />
+          </div>
+        </div>
+        <div class="cp-form-row">
+          <div class="cp-form-field">
+            <label class="cp-form-label">Level / band</label>
+            <input type="text" class="cp-form-input" placeholder="e.g. L5, SDE-III, IC4" />
+          </div>
+          <div class="cp-form-field">
+            <label class="cp-form-label">Years of experience</label>
+            <input type="text" class="cp-form-input" placeholder="e.g. 5" />
+          </div>
+        </div>
+        <div class="cp-form-row">
+          <div class="cp-form-field">
+            <label class="cp-form-label">Location</label>
+            <input type="text" class="cp-form-input" placeholder="e.g. Bangalore, Remote" />
+          </div>
+          <div class="cp-form-field">
+            <label class="cp-form-label">Offer date</label>
+            <input type="text" class="cp-form-input" placeholder="e.g. April 2026" />
+          </div>
+        </div>
+      </div>
+
+      <div class="cp-form-section">
+        <div class="cp-form-section-title">Compensation details</div>
+        <div class="cp-form-row">
+          <div class="cp-form-field">
+            <label class="cp-form-label">Annual base salary (₹ in lakhs)</label>
+            <input type="text" class="cp-form-input" placeholder="e.g. 48" />
+          </div>
+          <div class="cp-form-field">
+            <label class="cp-form-label">Annual bonus (₹ in lakhs)</label>
+            <input type="text" class="cp-form-input" placeholder="e.g. 10" />
+          </div>
+        </div>
+        <div class="cp-form-row">
+          <div class="cp-form-field">
+            <label class="cp-form-label">Total stock grant (₹ in lakhs)</label>
+            <input type="text" class="cp-form-input" placeholder="e.g. 120 over 4 yrs" />
+          </div>
+          <div class="cp-form-field">
+            <label class="cp-form-label">Sign-on bonus (₹ in lakhs)</label>
+            <input type="text" class="cp-form-input" placeholder="e.g. 15 (optional)" />
+          </div>
+        </div>
+      </div>
+
+      <div class="cp-privacy-row" style="margin-bottom: 16px;">
+        <div class="cp-privacy-icon">🔒</div>
+        <div class="cp-privacy-text">Your data is fully anonymized. We never show names, emails, or any identifying information. We use k-anonymity grouping to ensure no single profile can ever be traced back.</div>
+      </div>
+
+      <button class="cp-submit-btn" onclick="sendPrompt('Show me how my submitted compensation compares to similar profiles at this company and level')">Submit & unlock full insights ↗</button>
+    </div>
+  </div>
+
+  <!-- MOBILE NAV -->
+  <div class="cp-mobile-nav">
+    <button class="cp-mobile-btn active" onclick="showScreen('home')">
+      <span class="cp-mobile-btn-icon">🏠</span>Home
+    </button>
+    <button class="cp-mobile-btn" onclick="showScreen('discover')">
+      <span class="cp-mobile-btn-icon">🔍</span>Salaries
+    </button>
+    <button class="cp-mobile-btn" onclick="showScreen('compare')">
+      <span class="cp-mobile-btn-icon">⚖️</span>Compare
+    </button>
+    <button class="cp-mobile-btn" onclick="showScreen('submit')">
+      <span class="cp-mobile-btn-icon">➕</span>Submit
+    </button>
+  </div>
+</div>
+
+<script>
+  function showScreen(name) {
+    document.querySelectorAll('.cp-screen').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById('screen-' + name);
+    if (el) el.classList.add('active');
+    document.querySelectorAll('.cp-nav-link').forEach(l => l.classList.remove('active'));
+    const screenMap = { home: 0, discover: 1, compare: 2, submit: 3 };
+    const links = document.querySelectorAll('.cp-nav-link');
+    const idx = { home: 0, discover: 1, compare: 2, submit: 3 }[name];
+    if (idx !== undefined && links[idx]) links[idx].classList.add('active');
+    const mBtns = document.querySelectorAll('.cp-mobile-btn');
+    mBtns.forEach(b => b.classList.remove('active'));
+    if (idx !== undefined && mBtns[idx]) mBtns[idx].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateRange(el) {
+    document.getElementById('range-val').textContent = '₹' + el.value + 'L';
+  }
+
+  // Build distribution bars
+  const barData = [8, 18, 32, 52, 72, 88, 95, 78, 48, 22, 10, 5];
+  const barColors = ['#B5D4F4','#85B7EB','#378ADD','#378ADD','#185FA5','#0D6EF7','#0D6EF7','#185FA5','#378ADD','#85B7EB','#B5D4F4','#E6F1FB'];
+  const barsEl = document.getElementById('dist-bars');
+  if (barsEl) {
+    barData.forEach((h, i) => {
+      const bar = document.createElement('div');
+      bar.className = 'cp-dist-bar';
+      bar.style.cssText = `height:${h}%;background:${barColors[i]};`;
+      barsEl.appendChild(bar);
+    });
+  }
+
+  // Year projection
+  const proj = document.getElementById('yr-projection');
+  if (proj) {
+    const years = [
+      { label: 'Year 1', base: 56, rsu: 12, bonus: 10, note: '1yr cliff - no vest' },
+      { label: 'Year 2', base: 56, rsu: 48, bonus: 10, note: 'Vest begins' },
+      { label: 'Year 3', base: 60, rsu: 52, bonus: 11, note: '+7% raise typical' },
+      { label: 'Year 4', base: 64, rsu: 56, bonus: 12, note: 'Refresh grant eligible' },
+    ];
+    years.forEach(y => {
+      const total = y.base + y.rsu + y.bonus;
+      const div = document.createElement('div');
+      div.style.cssText = 'display:flex;align-items:center;gap:12px;';
+      div.innerHTML = `
+        <div style="font-size:12px;font-weight:600;color:var(--ink-3);width:52px;">${y.label}</div>
+        <div style="flex:1;height:6px;border-radius:99px;background:var(--surface-3);overflow:hidden;">
+          <div style="height:100%;border-radius:99px;width:${Math.round(total/3.5)}%;background:var(--brand);"></div>
+        </div>
+        <div style="font-family:var(--syne);font-weight:600;font-size:14px;width:52px;text-align:right;">₹${total}L</div>
+        <div style="font-size:11px;color:var(--ink-4);width:120px;">${y.note}</div>
+      `;
+      proj.appendChild(div);
+    });
+  }
+
+  // Filter chip toggle
+  document.querySelectorAll('.cp-chip').forEach(chip => {
+    chip.addEventListener('click', () => chip.classList.toggle('active'));
+  });
+</script>
